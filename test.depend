@@ -1,0 +1,98 @@
+# depslib dependency file v1.0
+1714483592 source:c:\users\prour\onedrive\Рабочий стол\test\test.cpp
+	<iostream>
+	"CPart.h"
+	"CWhole.h"
+
+1714482434 source:c:\users\prour\onedrive\Рабочий стол\test\src\cpart.cpp
+	"CPart.h"
+	<iostream>
+	<cstring>
+
+1714580196 c:\users\prour\onedrive\Рабочий стол\test\include\cpart.h
+	<iostream>
+
+1714553225 source:c:\users\prour\onedrive\Рабочий стол\test\src\cwhole.cpp
+	"Cwhole.h"
+	<iostream>
+	<cstring>
+
+1714483389 c:\users\prour\onedrive\Рабочий стол\test\include\cwhole.h
+	"CPart.h"
+
+1714653771 source:c:\users\prour\onedrive\Рабочий стол\game\src\cpart.cpp
+	"CPart.h"
+	<iostream>
+	<cstring>
+
+1714654807 c:\users\prour\onedrive\Рабочий стол\game\include\cpart.h
+	<iostream>
+
+1714654807 source:c:\users\prour\onedrive\Рабочий стол\game\src\cwhole.cpp
+	"Cwhole.h"
+	<iostream>
+
+1714653349 c:\users\prour\onedrive\Рабочий стол\game\include\cwhole.h
+	"CPart.h"
+
+1714652575 source:c:\users\prour\onedrive\Рабочий стол\game\test.cpp
+	<iostream>
+	<ctime>
+	<fstream>
+	"CPart.h"
+	"CWhole.h"
+
+1714653772 source:c:\users\рс\desktop\game\src\cpart.cpp
+	"CPart.h"
+	<iostream>
+	<cstring>
+
+1715001350 c:\users\рс\desktop\game\include\cpart.h
+	<iostream>
+
+1714654808 source:c:\users\рс\desktop\game\src\cwhole.cpp
+	"Cwhole.h"
+	<iostream>
+
+1715001350 c:\users\рс\desktop\game\include\cwhole.h
+	"CPart.h"
+
+1715001350 source:c:\users\рс\desktop\game\test.cpp
+	<iostream>
+	<fstream>
+	"CGame.h"
+
+1714992805 source:c:\users\рс\desktop\game\src\cgame.cpp
+	"CGame.h"
+
+1715001350 c:\users\рс\desktop\game\include\cgame.h
+	"CWhole.h"
+	<ctime>
+
+1714653772 source:c:\users\Олег\desktop\game\src\cpart.cpp
+	"CPart.h"
+	<iostream>
+	<cstring>
+
+1715001352 c:\users\Олег\desktop\game\include\cpart.h
+	<iostream>
+
+1715001352 source:c:\users\Олег\desktop\game\test.cpp
+	<iostream>
+	<fstream>
+	"CGame.h"
+
+1715001352 c:\users\Олег\desktop\game\include\cgame.h
+	"CWhole.h"
+	<ctime>
+
+1715083689 c:\users\Олег\desktop\game\include\cwhole.h
+	"CPart.h"
+
+1715083364 source:c:\users\Олег\desktop\game\src\cgame.cpp
+	"CGame.h"
+
+1715083689 source:c:\users\Олег\desktop\game\src\cwhole.cpp
+	"Cwhole.h"
+	<iostream>
+
