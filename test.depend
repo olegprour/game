@@ -77,12 +77,12 @@
 1715001352 c:\users\Юыху\desktop\game\include\cpart.h
 	<iostream>
 
-1715001352 source:c:\users\Юыху\desktop\game\test.cpp
+1715251985 source:c:\users\Юыху\desktop\game\test.cpp
 	<iostream>
 	<fstream>
 	"CGame.h"
 
-1715001352 c:\users\Юыху\desktop\game\include\cgame.h
+1715331405 c:\users\Юыху\desktop\game\include\cgame.h
 	"CWhole.h"
 	<ctime>
 
