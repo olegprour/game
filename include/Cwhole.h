@@ -1,19 +1,21 @@
 #ifndef CWHOLE_H
 #define CWHOLE_H
-
+#include <algorithm>
 #include "CPart.h"
 class CPack
 {
-    int m_n;
+     int m_n;
     public:
       CCard *m_arr[36];
        CPack ();
         ~CPack();
          int getm_n();
-          CCard pop();
+          bool pop(CCard&);
           int searchcard(value_card, suit_card);
+          int searchsuitcard(value_card vc, suit_card sc);
           bool add(value_card, suit_card);
           bool del(value_card, suit_card);
-
+          int mincard();
+          void sortcards();
 };
 #endif // CWHOLE_H
