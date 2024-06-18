@@ -62,15 +62,15 @@ void CGame::menu()
                break;
            case 3:
                compturn();
-               cout <<"Enter the value from 0 to " << m_distr1->getm_n() << endl;
+               cout <<"Enter the value from 0 to " << m_distr1->getm_n()-1 << endl;
                 cin >> k;
            if (myretaliatory())
                 cout << m_beat << endl;
             else
-             cout << "this card is less than turncar, you have to take the turncard; "<< endl;
+           //
            break;
            case 4:
-            cout <<"Enter the value from 0 to " << m_distr1->getm_n() << endl;
+            cout <<"Enter the value from 0 to " << m_distr1->getm_n()-1 << endl;
             cin >> k;
             myturn(k);
             if (compretaliatory()) cout << m_beat << endl;
@@ -143,11 +143,6 @@ void CGame::compturn()
 }
 bool CGame::myretaliatory()
 {
-   //if ((m_turn.getsuit()== m_distr1->m_arr[k]->getsuit()&&
-     //   m_distr1->m_arr[k]->getvalue()>=m_turn.getvalue())||
-       // (m_trump.getsuit()==m_distr1->m_arr[k]->getsuit()&&
-        // m_turn.getsuit()!=m_trump.getsuit()))
-
    int k = m_distr1->searchsuitcard(m_turn.getvalue(), m_turn.getsuit());
    if (k<0&&m_trump.getsuit()!=m_turn.getsuit())
         k = m_distr1->searchsuitcard(six, m_trump.getsuit());
@@ -159,11 +154,18 @@ bool CGame::myretaliatory()
     }
     else
     {
-       cout <<"Enter the value from 0 to " << m_distr1->getm_n() << endl;
-       cin >> m_numbermycard;
-       m_beat=*m_distr1->m_arr[m_numbermycard];
-       m_distr1->del(m_beat.getvalue(),m_beat.getsuit());
-       recoverydist1();
+
+         do{
+            cout <<"Enter the value from 0 to " << m_distr1->getm_n()-1 << endl;
+            cin >> m_numbermycard;
+           }while(!((m_turn.getsuit()== m_distr1->m_arr[m_numbermycard]->getsuit()&&
+           m_distr1->m_arr[m_numbermycard]->getvalue()>=m_turn.getvalue())||
+           (m_trump.getsuit()==m_distr1->m_arr[m_numbermycard]->getsuit()&&
+           m_turn.getsuit()!=m_trump.getsuit())));
+
+          m_beat=*m_distr1->m_arr[m_numbermycard];
+          m_distr1->del(m_beat.getvalue(),m_beat.getsuit());
+          recoverydist1();
        return true;
     }
 }
@@ -204,7 +206,7 @@ void CGame::play()
 
       if(m_mymove)
       {
-        cout <<"Enter the value from 0 to " << m_distr1->getm_n() << endl;
+        cout <<"Enter the value from 0 to " << m_distr1->getm_n()-1 << endl;
          cin >> k;
          myturn(k);
          if (compretaliatory())
@@ -219,18 +221,19 @@ void CGame::play()
        else
       {
           compturn();
-
-          // вызов метода проверки наличия нужной    карты
-
           if (myretaliatory())
           {
-               // cin >> m_numbermycard;
                 cout << m_beat << endl;
                 cout << endl;
                 m_mymove = true;
           }
             else
-             cout << "this card is less than turncar, you have to take the turncard; "<< endl;
+            {
+             cout << "You have no such card to beat turncard."<< endl;
+             cout<< "You have to take the turncard.  "<< endl;
+             cout<< "Press any key to continue: "<< endl;
+             system("pause");
+            }
        }
        if(m_pack->getm_n()==0&&m_distr1->getm_n()==0)
        {
