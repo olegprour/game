@@ -64,7 +64,7 @@ void CGame::menu()
                compturn();
                cout <<"Enter the value from 0 to " << m_distr1->getm_n() << endl;
                 cin >> k;
-           if (myretaliatory(k))
+           if (myretaliatory())
                 cout << m_beat << endl;
             else
              cout << "this card is less than turncar, you have to take the turncard; "<< endl;
@@ -141,23 +141,30 @@ void CGame::compturn()
    recoverydist2();
 //     if(m_distr2->getm_n()==0) cout<< " comp win!!!!!!!!!!!!!!!!!!!!!!!1";
 }
-bool CGame::myretaliatory(int k)
+bool CGame::myretaliatory()
 {
-   if ((m_turn.getsuit()== m_distr1->m_arr[k]->getsuit()&&
-        m_distr1->m_arr[k]->getvalue()>=m_turn.getvalue())||
-        (m_trump.getsuit()==m_distr1->m_arr[k]->getsuit()&&
-         m_turn.getsuit()!=m_trump.getsuit()))
-   {
-       m_beat=*m_distr1->m_arr[k];
+   //if ((m_turn.getsuit()== m_distr1->m_arr[k]->getsuit()&&
+     //   m_distr1->m_arr[k]->getvalue()>=m_turn.getvalue())||
+       // (m_trump.getsuit()==m_distr1->m_arr[k]->getsuit()&&
+        // m_turn.getsuit()!=m_trump.getsuit()))
+
+   int k = m_distr1->searchsuitcard(m_turn.getvalue(), m_turn.getsuit());
+   if (k<0&&m_trump.getsuit()!=m_turn.getsuit())
+        k = m_distr1->searchsuitcard(six, m_trump.getsuit());
+   if(k<0)
+    {
+       m_distr1->add(m_turn.getvalue(), m_turn.getsuit());
+       m_distr1->sortcards();
+       return false;
+    }
+    else
+    {
+       cout <<"Enter the value from 0 to " << m_distr1->getm_n() << endl;
+       cin >> m_numbermycard;
+       m_beat=*m_distr1->m_arr[m_numbermycard];
        m_distr1->del(m_beat.getvalue(),m_beat.getsuit());
        recoverydist1();
        return true;
-   }
-    else
-    {
-     m_distr1->add(m_turn.getvalue(), m_turn.getsuit());
-     m_distr1->sortcards();
-     return false;
     }
 }
 bool CGame::compretaliatory()
@@ -212,10 +219,12 @@ void CGame::play()
        else
       {
           compturn();
-          cout <<"Enter the value from 0 to " << m_distr1->getm_n() << endl;
-          cin >> k;
-          if (myretaliatory(k))
+
+          // вызов метода проверки наличия нужной    карты
+
+          if (myretaliatory())
           {
+               // cin >> m_numbermycard;
                 cout << m_beat << endl;
                 cout << endl;
                 m_mymove = true;

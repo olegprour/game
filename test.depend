@@ -69,30 +69,33 @@
 	"CWhole.h"
 	<ctime>
 
-1714653772 source:c:\users\Юыху\desktop\game\src\cpart.cpp
+1718655801 source:c:\users\Юыху\desktop\game\src\cpart.cpp
 	"CPart.h"
 	<iostream>
 	<cstring>
 
-1715001352 c:\users\Юыху\desktop\game\include\cpart.h
+1718655802 c:\users\Юыху\desktop\game\include\cpart.h
 	<iostream>
 
-1715251985 source:c:\users\Юыху\desktop\game\test.cpp
+1718655803 source:c:\users\Юыху\desktop\game\test.cpp
 	<iostream>
-	<fstream>
+	"CPart.h"
+	<set>
+	<ctime>
 	"CGame.h"
 
-1715331405 c:\users\Юыху\desktop\game\include\cgame.h
+1718715843 c:\users\Юыху\desktop\game\include\cgame.h
 	"CWhole.h"
 	<ctime>
 
-1715083689 c:\users\Юыху\desktop\game\include\cwhole.h
+1718655800 c:\users\Юыху\desktop\game\include\cwhole.h
+	<algorithm>
 	"CPart.h"
 
 1715083364 source:c:\users\Юыху\desktop\game\src\cgame.cpp
 	"CGame.h"
 
-1715083689 source:c:\users\Юыху\desktop\game\src\cwhole.cpp
+1718655800 source:c:\users\Юыху\desktop\game\src\cwhole.cpp
 	"Cwhole.h"
 	<iostream>
 

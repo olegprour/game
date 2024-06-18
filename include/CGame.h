@@ -12,13 +12,14 @@ class CGame
         void compturn();
         void recoverydist1();
         void recoverydist2();
-        bool myretaliatory(int);
+        bool myretaliatory();
         bool compretaliatory();
         void randcard(int k);
         void randdistr();
         public:
         bool m_mymove;
         CCard m_turn;
+        int m_numbermycard;
         CCard m_beat;
         CCard m_trump;
         CPack *m_pack;
