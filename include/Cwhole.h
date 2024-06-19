@@ -12,6 +12,7 @@ class CPack
          int getm_n();
           bool pop(CCard&);
           int searchcard(value_card, suit_card);
+          int searchvalcard(value_card vc);
           int searchsuitcard(value_card vc, suit_card sc);
           bool add(value_card, suit_card);
           bool del(value_card, suit_card);

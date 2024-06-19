@@ -61,3 +61,11 @@ void CPack::sortcards()
 {
     sort(m_arr, m_arr+m_n, [](CCard * a, CCard* b){return *a < *b;});
 }
+int CPack::searchvalcard(value_card vc)
+{
+    for (int i=0; i < m_n; i++)
+    {
+            if(m_arr[i]->getvalue()==vc) return i;
+    }
+    return -1;
+}

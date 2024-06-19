@@ -7,9 +7,9 @@ CGame::CGame():m_pack(new CPack), m_distr1(new CPack), m_distr2(new CPack)
       int v= rand()%9;
       int s= rand()%4;
       m_pack->add((value_card)v,(suit_card) s);
-      if (m_pack->getm_n() == 36) { /*cout<< m_pack->getm_n();*/ break;}
+      if (m_pack->getm_n() == 36)  break;
     }
-  //  cout<< m_pack->getm_n();
+
 }
 CGame::~CGame(){delete m_pack; delete m_distr1; delete m_distr2; }
 void CGame::randdistr(){
@@ -27,11 +27,13 @@ void CGame::randdistr(){
      m_pack->del(m_trump.getvalue(), m_trump.getsuit());
      m_distr1->sortcards();
      m_distr2->sortcards();
+     m_trumppack=true;;
 }
 void CGame::viewdist1(){for (int i=0; i<m_distr1->getm_n(); i++) cout<<i<<" "<<* m_distr1->m_arr[i] <<endl;}
 void CGame::viewdist2(){for (int i=0; i<m_distr2->getm_n(); i++) cout<<i<<" "<<* m_distr2->m_arr[i] <<endl;}
 void CGame::viewpack(){for (int i=0; i<m_pack->getm_n(); i++) cout<<* m_pack->m_arr[i] <<endl;}
-void CGame::randcard(int k){ if (k>-1 and k<=36) cout<<*m_pack->m_arr[k] << endl; else cout<< "wrong  number of card"<< endl;}
+//void CGame::randcard(int k){ if (k>-1 and k<=36) cout<<*m_pack->m_arr[k] << endl; else cout<< "wrong  number of card"<< endl;}
+/*
 void CGame::menu()
 {
     cout<<endl;
@@ -93,6 +95,7 @@ void CGame::menu()
         }
     }
 }
+*/
 void CGame::recoverydist1()
 {
   CCard buf;
@@ -101,6 +104,11 @@ void CGame::recoverydist1()
         m_pack->pop(buf);
         m_distr1->add(buf.getvalue(), buf.getsuit());
         m_pack->del(buf.getvalue(), buf.getsuit());
+     }
+     if (m_trumppack==true&&m_pack->getm_n()==0&&m_distr1->getm_n()<6)
+     {
+        m_distr1->add(m_trump.getvalue(), m_trump.getsuit());
+        m_trumppack = false;
      }
      m_distr1->sortcards();
 }
@@ -113,16 +121,20 @@ void CGame::recoverydist2()
          m_distr2->add(buf.getvalue(), buf.getsuit());
          m_pack->del(buf.getvalue(), buf.getsuit());
      }
+     if (m_trumppack==true&&m_pack->getm_n()==0&&m_distr2->getm_n()<6)
+     {
+        m_distr2->add(m_trump.getvalue(), m_trump.getsuit());
+        m_trumppack = false;
+     }
      m_distr2->sortcards();
 }
 
 void CGame:: myturn(int k)
 {
-    m_turn = *m_distr1->m_arr[k];
-    m_distr1->del(m_turn.getvalue(),m_turn.getsuit());
-    cout << m_turn << endl;
-    recoverydist1();
-    // if(m_distr1->getm_n()==0) cout<< " you win!!!!!!!!!!!!!!!!!!!!!!!1";}
+    m_turn[0] = *m_distr1->m_arr[k];
+    m_distr1->del(m_turn[0].getvalue(),m_turn[0].getsuit());
+    cout << m_turn[0] << endl;
+}
 void CGame::compturn()
 {
    int i(0);
@@ -130,25 +142,24 @@ void CGame::compturn()
     {
       if(m_trump.getsuit()!=m_distr2->m_arr[i]->getsuit())
        {
-          m_turn = *m_distr2->m_arr[i];
+          m_turn[0] = *m_distr2->m_arr[i];
           break;
        }
        i++;
     }
-   if (i==m_distr2->getm_n())  m_turn = *m_distr2->m_arr[0];
-   m_distr2->del(m_turn.getvalue(),m_turn.getsuit());
-   cout << m_turn << endl;
-   recoverydist2();
-//     if(m_distr2->getm_n()==0) cout<< " comp win!!!!!!!!!!!!!!!!!!!!!!!1";
+   if (i==m_distr2->getm_n())  m_turn[0] = *m_distr2->m_arr[0];
+   m_distr2->del(m_turn[0].getvalue(),m_turn[0].getsuit());
+   cout << m_turn[0] << endl;
+
 }
 bool CGame::myretaliatory()
 {
-   int k = m_distr1->searchsuitcard(m_turn.getvalue(), m_turn.getsuit());
-   if (k<0&&m_trump.getsuit()!=m_turn.getsuit())
+   int k = m_distr1->searchsuitcard(m_turn[0].getvalue(), m_turn[0].getsuit());
+   if (k<0&&m_trump.getsuit()!=m_turn[0].getsuit())
         k = m_distr1->searchsuitcard(six, m_trump.getsuit());
    if(k<0)
     {
-       m_distr1->add(m_turn.getvalue(), m_turn.getsuit());
+       m_distr1->add(m_turn[0].getvalue(), m_turn[0].getsuit());
        m_distr1->sortcards();
        return false;
     }
@@ -158,41 +169,43 @@ bool CGame::myretaliatory()
          do{
             cout <<"Enter the value from 0 to " << m_distr1->getm_n()-1 << endl;
             cin >> m_numbermycard;
-           }while(!((m_turn.getsuit()== m_distr1->m_arr[m_numbermycard]->getsuit()&&
-           m_distr1->m_arr[m_numbermycard]->getvalue()>=m_turn.getvalue())||
+           }while(!((m_turn[0].getsuit()== m_distr1->m_arr[m_numbermycard]->getsuit()&&
+           m_distr1->m_arr[m_numbermycard]->getvalue()>=m_turn[0].getvalue())||
            (m_trump.getsuit()==m_distr1->m_arr[m_numbermycard]->getsuit()&&
-           m_turn.getsuit()!=m_trump.getsuit())));
+           m_turn[0].getsuit()!=m_trump.getsuit())));
 
-          m_beat=*m_distr1->m_arr[m_numbermycard];
-          m_distr1->del(m_beat.getvalue(),m_beat.getsuit());
-          recoverydist1();
+          m_beat[0]=*m_distr1->m_arr[m_numbermycard];
+          m_distr1->del(m_beat[0].getvalue(),m_beat[0].getsuit());
+
        return true;
     }
 }
 bool CGame::compretaliatory()
 {
-    int k = m_distr2->searchsuitcard(m_turn.getvalue(), m_turn.getsuit());
-    if (k<0&&m_trump.getsuit()!=m_turn.getsuit()){
+    int k = m_distr2->searchsuitcard(m_turn[0].getvalue(), m_turn[0].getsuit());
+    if (k<0&&m_trump.getsuit()!=m_turn[0].getsuit()){
         k = m_distr2->searchsuitcard(six, m_trump.getsuit());
     }
     if( k < 0)
         {
-          m_distr2->add(m_turn.getvalue(), m_turn.getsuit());
+          m_distr2->add(m_turn[0].getvalue(), m_turn[0].getsuit());
           m_distr2->sortcards();
           return false;
         }
         else
         {
-           m_beat=*m_distr2->m_arr[k];
-           m_distr2->del(m_beat.getvalue(), m_beat.getsuit());
-           recoverydist2();
+           m_beat[0]=*m_distr2->m_arr[k];
+           m_distr2->del(m_beat[0].getvalue(), m_beat[0].getsuit());
            return true;
         }
 }
 
 void CGame::play()
 {
+
+    m_numberturn = 1;
     int k;
+    char c;
     randdistr();
     m_mymove= true;
     while (true)
@@ -211,39 +224,50 @@ void CGame::play()
          myturn(k);
          if (compretaliatory())
          {
-             cout << m_beat << endl;
+             cout << m_beat[0] << endl;
              cout << endl;
              m_mymove = false;
+             recoverydist2();
          }
          else
            cout << "comp can't beat your card "<< endl;
+           recoverydist1();
       }
+
        else
       {
           compturn();
           if (myretaliatory())
           {
-                cout << m_beat << endl;
+                cout << m_beat[0] << endl;
                 cout << endl;
                 m_mymove = true;
+                recoverydist1();
           }
             else
             {
              cout << "You have no such card to beat turncard."<< endl;
              cout<< "You have to take the turncard.  "<< endl;
              cout<< "Press any key to continue: "<< endl;
-             system("pause");
+             cin >> c;
             }
+            recoverydist2();
        }
-       if(m_pack->getm_n()==0&&m_distr1->getm_n()==0)
+
+       if(m_pack->getm_n()==0&&m_distr1->getm_n()==0&&m_distr2->getm_n()!=0)
        {
-            cout<< " you win!!!!!!!!!!!!!!!!!!!!!!!1";
+            cout<< " you win!!!!!!!!!!";
             break;
        }
-       else if (m_pack->getm_n()==0&&m_distr2->getm_n()==0)
+       else if (m_pack->getm_n()==0&&m_distr2->getm_n()==0&&m_distr1->getm_n()!=0)
        {
-            cout<< " comp win!!!!!!!!!!!!!!!!!!!!!!!1";
+            cout<< " comp win!!!!!!!!";
             break;
+       }
+       else if (m_pack->getm_n()==0&&m_distr2->getm_n()==0&&m_distr1->getm_n()==0)
+       {
+        cout<< " drawn game!!!!!!!!!!!!!!!!!!!!!!!1";
+        break;
        }
     }
 }

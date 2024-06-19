@@ -84,18 +84,18 @@
 	<ctime>
 	"CGame.h"
 
-1718715843 c:\users\Юыху\desktop\game\include\cgame.h
+1718808712 c:\users\Юыху\desktop\game\include\cgame.h
 	"CWhole.h"
 	<ctime>
 
-1718655800 c:\users\Юыху\desktop\game\include\cwhole.h
+1718806383 c:\users\Юыху\desktop\game\include\cwhole.h
 	<algorithm>
 	"CPart.h"
 
-1718719738 source:c:\users\Юыху\desktop\game\src\cgame.cpp
+1718810227 source:c:\users\Юыху\desktop\game\src\cgame.cpp
 	"CGame.h"
 
-1718655800 source:c:\users\Юыху\desktop\game\src\cwhole.cpp
+1718806425 source:c:\users\Юыху\desktop\game\src\cwhole.cpp
 	"Cwhole.h"
 	<iostream>
 
