@@ -12,9 +12,7 @@ suit_card CCard::getsuit(){return m_suitcard;}
 void CCard::setvalue(value_card c){ m_valuecard= c;}
 void CCard::setsuit(suit_card s){ m_suitcard= s;}
 bool operator < (const CCard& cl, const CCard& cr){
-  //if (cl.m_suitcard < cr.m_suitcard) return true;
-   //  else
-   if (/*cl.m_suitcard == cr.m_suitcard&&*/cl.m_valuecard < cr.m_valuecard) return true;
+   if (cl.m_valuecard < cr.m_valuecard) return true;
           else return false;
 }
 bool operator == (const CCard& cl, const CCard& cr){

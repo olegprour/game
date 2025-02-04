@@ -4,15 +4,11 @@
 #include <ctime>
 class CGame{
         void viewpack(CPack *);
-      //  void viewdist1();
-     //   void viewdist2();
         void myturn(int);
         void compturn();
-        void recoverydist1();
-        void recoverydist2();
+        void recoverydist(CPack *);
         bool myretaliatory();
         bool compretaliatory();
-        //void randcard(int k);
         void randdistr();
         public:
         bool m_mymove;
