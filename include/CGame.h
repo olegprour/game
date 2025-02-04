@@ -2,12 +2,10 @@
 #define CGAME_H
 #include "CWhole.h"
 #include <ctime>
-class CGame
-{
-
-        void viewpack();
-        void viewdist1();
-        void viewdist2();
+class CGame{
+        void viewpack(CPack *);
+      //  void viewdist1();
+     //   void viewdist2();
         void myturn(int);
         void compturn();
         void recoverydist1();

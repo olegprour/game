@@ -29,9 +29,9 @@ void CGame::randdistr(){
      m_distr2->sortcards();
      m_trumppack=true;;
 }
-void CGame::viewdist1(){for (int i=0; i<m_distr1->getm_n(); i++) cout<<i<<" "<<* m_distr1->m_arr[i] <<endl;}
-void CGame::viewdist2(){for (int i=0; i<m_distr2->getm_n(); i++) cout<<i<<" "<<* m_distr2->m_arr[i] <<endl;}
-void CGame::viewpack(){for (int i=0; i<m_pack->getm_n(); i++) cout<<* m_pack->m_arr[i] <<endl;}
+//void CGame::viewdist1(){for (int i=0; i<m_distr1->getm_n(); i++) cout<<i<<" "<<* m_distr1->m_arr[i] <<endl;}
+//void CGame::viewdist2(){for (int i=0; i<m_distr2->getm_n(); i++) cout<<i<<" "<<* m_distr2->m_arr[i] <<endl;}
+void CGame::viewpack(CPack * pack){for (int i=0; i<pack->getm_n(); i++) cout<<* pack->m_arr[i] <<endl;}
 //void CGame::randcard(int k){ if (k>-1 and k<=36) cout<<*m_pack->m_arr[k] << endl; else cout<< "wrong  number of card"<< endl;}
 /*
 void CGame::menu()
@@ -207,12 +207,17 @@ void CGame::play()
     int k;
     char c;
     randdistr();
+      // viewpack(m_pack);
     m_mymove= true;
     while (true)
     {
-      viewdist1();
+      //viewdist1();
+
+          viewpack(m_distr1);
       cout << endl;
-      viewdist2();
+      //viewdist2();
+
+          viewpack(m_distr2);
       cout << endl;
       cout << m_trump << endl;
       cout << endl;
