@@ -2,8 +2,7 @@
 #define CWHOLE_H
 #include <algorithm>
 #include "CPart.h"
-class CPack
-{
+class CPack{
      int m_n;
     public:
       CCard *m_arr[36];
